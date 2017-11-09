@@ -10,3 +10,7 @@ Ideally, this POC should demonstrate that remote stores can be injected
 into local stores without regard for whichever framework is being used to
 serve the client app, so long as the stores can be injected and merged.
 
+## Get started:
+1. [Clone this repo](https://github.com/IMAHiji/inversify-poc.git)
+2. _npm install_
+3. start the server using `node-ts server.ts`

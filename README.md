@@ -15,6 +15,12 @@ serve the client app, so long as the stores can be injected and merged.
 2. _npm install_
 3. start the server using `node-ts server.ts`
 
+## What's inside:
+
+1. [Express Server](https://expressjs.com/)
+2. [Inversify](http://inversify.io/)
+3. [Inversify Express Utilities](https://github.com/inversify/inversify-express-utils)
+4. [Redux](https://redux.js.org/)
 
 
 ### Desired Structure:

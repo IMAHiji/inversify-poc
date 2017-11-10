@@ -1,8 +1,14 @@
 # Inversify POC
 
-## Goal:
-The goal of this POC is to demonstrate the feasability (or lack thereof?)
-of using an IOC pattern to inject a remote (server-side) store into a local
+## Primary Goals:
+
+1. Create control containers using inversify to hold stores
+2. Create stores using redux
+3. Make stores available to client applications regardless of framework
+(no angular/react/whatever allowed!)
+
+The goal of this POC is to demonstrate the potential of using an IOC pattern
+to inject a remote (server-side) store into a local
 store. In this POC, we are using [Inversify](http://inversify.io/) as the
 mode of injection and [Redux](https://redux.js.org/) as the store.
 
@@ -13,31 +19,31 @@ serve the client app, so long as the stores can be injected and merged.
 ## Get started:
 1. [Clone this repo](https://github.com/IMAHiji/inversify-poc.git)
 2. _npm install_
-3. start the server using `node-ts server.ts`
+3. start the server using `npm run dev`
 
 ## What's inside:
 
-1. [Express Server](https://expressjs.com/)
-2. [Inversify](http://inversify.io/)
-3. [Inversify Express Utilities](https://github.com/inversify/inversify-express-utils)
-4. [Redux](https://redux.js.org/)
+1. [Inversify](http://inversify.io/)
+2. [Redux](https://redux.js.org/)
+
 
 
 ### Desired Structure:
- * Store is created on the server
- * Reducers are on each app
- * Actions are async and trigger state changes in the store located on the server.
+ * Store is created on the server and injected to whatever requests the IOC container that holds the store
+ * Ability to combine a local store with the injected remote store
+ * Actions are async and trigger state changes in the store located on the server. ( _maybe no?_ )
 
 ### What's inside:
-
-The `server.ts` file initializes and creates some dummy container bindings
-that can be accessed and tested using your browser's route, eg: visiting
-_:3030/user_ will trigger the `getUser()` method, returning `userStorage`
-defined in the `/service/service-user` service.
+* `/src/constant`: Tags and Types, the former of which is not currently used in this simple implementation.  The
+latter (Types) are used to generate unique Symbols for each container ("Symbol('blahblah') 對啊.
+* `/src/entities`: Is the class that's used to describe the shape of the inversify container
+* `/src/interfaces`: It contains .... interfaces!
+* `/src/inversify`: holds the `ioc_config` that binds the inversion control entity to a
+controllable container.
+* `/src/store`:  All the redux stuff.
 
 ### What currently sucks (rather, what is left):
-1. The redux store is generated, but more research is needed on how to generate
-the correct interfaces that can be used to define said store in an injectable controller
+1. Implement usage of redux observables
 2. Need to decide from where actions will be dispatched, how to ensure parity of state between
 applications that are requesting the common store
 3. Will the common store be mutable by client applications?

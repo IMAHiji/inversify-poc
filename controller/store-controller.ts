@@ -17,5 +17,14 @@ export class StoreController {
         return this.storeService.returnStore();
     }
 
+    @httpGet('/increment')
+    public increment(): any {
+        return this.storeService.increment();
+    }
+
+    @httpGet('/decrement')
+    public decrement(): any {
+        return this.storeService.increment();
+    }
 
 }

@@ -13,8 +13,17 @@ export default class Store implements StoreInterface {
     }
 
     public returnStore() {
-        console.log('Hello from inside the store')
         console.log('Here is the store', this.store.getState())
+        return this.store.getState()
+    }
+
+    public increment() {
+        this.store.dispatch({type:'INCREMENT'})
+        return this.store.getState()
+    }
+
+    public decrement() {
+        this.store.dispatch({type:'DECREMENT'})
         return this.store.getState()
     }
 }

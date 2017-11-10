@@ -9,7 +9,7 @@ import { StoreInterface } from './interface-store';
 import { counterReducer } from './reducers';
 
 
-export  function createAppStore(): Store<StoreInterface> {
+export function createAppStore(): Store<StoreInterface> {
 
     return createStore<StoreInterface>(
         counterReducer,

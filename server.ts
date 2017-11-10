@@ -5,9 +5,11 @@ import {createAppStore} from './store/store';
 import * as bodyParser from 'body-parser';
 import TYPES from './constant/types';
 import TAGS from './constant/tags';
-import { HomeController } from './controller/home';
-import { UserController } from './controller/user';
+import { HomeController } from './controller/home-controller';
+import { UserController } from './controller/user-controller';
 import { UserService } from './service/service-user';
+import {StoreController} from './controller/store-controller';
+import Store from './service/service-store'
 
 
 // load everything needed to the Container
@@ -20,6 +22,10 @@ console.log('store created', store)
 container.bind<interfaces.Controller>(TYPE.Controller).to(HomeController).whenTargetNamed(TAGS.HomeController);
 container.bind<interfaces.Controller>(TYPE.Controller).to(UserController).whenTargetNamed(TAGS.UserController);
 container.bind<UserService>(TYPES.UserService).to(UserService);
+
+container.bind<Store>(TYPES.Store).to(Store)
+container.bind<interfaces.Controller>(TYPE.Controller).to(StoreController).whenTargetNamed(TAGS.StoreController);
+
 
 // start the server
 let server = new InversifyExpressServer(container);

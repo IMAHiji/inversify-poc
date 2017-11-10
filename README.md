@@ -25,5 +25,18 @@ https://github.com/ng-book/angular2-redux-chat/tree/master/redux-counter/src/app
  * Reducers are on each app
  * Actions are async and trigger state changes in the store located on the server.
 
+### What's inside:
 
+The `server.ts` file initializes and creates some dummy container bindings
+that can be accessed and tested using your browser's route, eg: visiting
+_:3030/user_ will trigger the `getUser()` method, returning `userStorage`
+defined in the `/service/service-user` service.
 
+### What currently sucks (rather, what is left):
+1. The redux store is generated, but more research is needed on how to generate
+the correct interfaces that can be used to define said store in an injectable controller
+2. Need to decide from where actions will be dispatched, how to ensure parity of state between
+applications that are requesting the common store
+3. Will the common store be mutable by client applications?
+4. Will the entire store be injected into each client application, with slices of the store being skimmed with
+reducers in the client apps?

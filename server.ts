@@ -13,9 +13,7 @@ import { UserService } from './service/service-user';
 // load everything needed to the Container
 let container = new Container();
 const store = createAppStore();
-console.log('store created', store.subscribe(()=> {
-    console.log('data')
-}))
+console.log('store created', store)
 
 
 

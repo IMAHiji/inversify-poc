@@ -10,3 +10,12 @@ function render(): any {
 
 render()
 store.subscribe(render)
+
+document.getElementById('increment')
+    .addEventListener('click', function(){
+        store.dispatch({type:'INCREMENT'})
+    })
+document.getElementById('decrement')
+    .addEventListener('click', function(){
+        store.dispatch({type:'DECREMENT'})
+    })

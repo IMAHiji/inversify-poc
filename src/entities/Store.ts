@@ -10,8 +10,8 @@ class Store implements InterfaceStore {
 
     dispatch({}:object):any{};
     getState():any{};
-    subscribe():any{};
-    replaceReducer(){};
+    subscribe(listener:Function):any{};
+    replaceReducer(nextReducer: Function):any{};
 
     public constructor(){
         this.dispatch = store.dispatch;

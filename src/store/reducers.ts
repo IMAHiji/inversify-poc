@@ -3,17 +3,17 @@
  * Counter Reducer
  */
 import { Reducer, Action } from 'redux';
-import { StoreInterface } from './interface-store';
+import { StateInterface } from './interface-state';
 import {
     INCREMENT,
     DECREMENT
 } from './actions';
 
-const initialState: StoreInterface = { count: 0 };
+const initialState: StateInterface = { count: 0 };
 
 // Create our reducer that will handle changes to the state
-export const counterReducer: Reducer<StoreInterface> =
-    (state: StoreInterface = initialState, action: Action): StoreInterface => {
+export const counterReducer: Reducer<StateInterface> =
+    (state: StateInterface = initialState, action: Action): StateInterface => {
         switch (action.type) {
             case INCREMENT:
                 return Object.assign({}, state, { count: state.count + 1 });

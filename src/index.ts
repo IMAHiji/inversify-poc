@@ -1,6 +1,12 @@
-import store from  './store/store'
+// import store from  './store/store'
+import container from '../src/inversify/ioc_config'
+import TYPES from './constant/types';
+import Store from './entities/Store';
 
-console.log('Store?', store)
+let store = container.get<Store>(TYPES.Store)
+
+console.log('Store?', store.getState())
+
 
 const target:HTMLElement = document.getElementById('count')
 

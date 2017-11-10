@@ -5,18 +5,19 @@ import {
     applyMiddleware,
 } from 'redux';
 import logger from 'redux-logger'
-import { StoreInterface } from './interface-store';
+import { StateInterface } from './interface-state';
 import { counterReducer } from './reducers';
 
 
-function createAppStore(): Store<StoreInterface> {
-    return createStore<StoreInterface>(
+function createAppStore(): Store<StateInterface> {
+    return createStore<StateInterface>(
         counterReducer,
         applyMiddleware(logger)
     );
 }
 
 const store = createAppStore()
+
 export default store
 
 

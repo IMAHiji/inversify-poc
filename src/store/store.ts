@@ -9,10 +9,16 @@ import { StoreInterface } from './interface-store';
 import { counterReducer } from './reducers';
 
 
-export function createAppStore(): Store<StoreInterface> {
-
+function createAppStore(): Store<StoreInterface> {
     return createStore<StoreInterface>(
         counterReducer,
         applyMiddleware(logger)
     );
 }
+
+const store = createAppStore()
+export default store
+
+
+
+

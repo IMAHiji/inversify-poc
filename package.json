@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "html-webpack-plugin": "^2.30.1",
     "inversify": "^4.5.1",
     "inversify-binding-decorators": "^3.0.0",
     "inversify-express-utils": "^4.1.0",
@@ -17,9 +18,16 @@
     "redux-observable": "^0.17.0",
     "reflect-metadata": "^0.1.10"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --env production",
+    "dev": "webpack-dev-server --env development"
   },
   "author": "",
   "license": "ISC"

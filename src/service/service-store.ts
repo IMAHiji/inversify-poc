@@ -1,7 +1,7 @@
 
 import { injectable } from 'inversify';
 import { StoreInterface } from '../store/interface-store';
-import {createAppStore} from '../store/store';
+import store from '../store/store';
 
 @injectable()
 export default class Store implements StoreInterface {
@@ -9,7 +9,7 @@ export default class Store implements StoreInterface {
     public store:any;
     public constructor(){
         this.count = 0;
-        this.store = createAppStore()
+        this.store = store
     }
 
     public returnStore() {

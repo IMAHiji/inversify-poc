@@ -3,7 +3,7 @@
 interface InterfaceStore {
     dispatch(action:object):any
     getState():object
-    subscribe(listener: any):void
+    subscribe(listener)
     replaceReducer():any
 }
 

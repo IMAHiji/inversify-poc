@@ -1,4 +1,4 @@
-// import store from  './store/store'
+
 import container from '../src/inversify/ioc_config'
 import TYPES from './constant/types';
 import Store from './entities/Store';

@@ -8,10 +8,10 @@ console.log("Store in class: ", store)
 @injectable()
 class Store implements InterfaceStore {
 
-    public dispatch():any{}
-    public getState():any{}
-    public subscribe():any{}
-    public replaceReducer():any{}
+    dispatch({}:object):any{};
+    getState():any{};
+    subscribe():any{};
+    replaceReducer(){};
 
     public constructor(){
         this.dispatch = store.dispatch;

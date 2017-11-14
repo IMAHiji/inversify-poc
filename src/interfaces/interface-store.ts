@@ -1,13 +1,13 @@
 import {Reducer} from './interface-reducer'
-import {Action} from './interface-actions'
+import {Action} from 'redux'
 import {ListenerCallback} from './interface-listenerCallback'
 import { UnsubscribeCallBack } from './interface-unsubscribeCallback';
 
 class StoreInterface<T> {
-    private _state: T;
-    private _listeners: ListenerCallback[] = [];
+    public _state: T;
+    public _listeners: ListenerCallback[] = [];
     constructor(
-        private reducer:Reducer<T>,
+        public reducer:Reducer<T>,
         initialState:T
     ){
         this._state = initialState

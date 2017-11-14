@@ -1,11 +1,11 @@
 import 'reflect-metadata'
 import {Container} from 'inversify'
-import InterfaceStore from '../interfaces/interface-store'
+import StoreInterface from '../interfaces/interface-store'
 import TYPES from '../constant/types'
-import Store from '../entities/Store'
+import Store from '../interfaces/interface-store'
 
 let container = new Container();
 
-container.bind<InterfaceStore>(TYPES.Store).to(Store)
+container.bind<StoreInterface>(TYPES.Store).to(Store)
 
 export default container;

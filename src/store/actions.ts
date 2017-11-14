@@ -1,14 +1,21 @@
-import {
-    Action,
-    ActionCreator
-} from 'redux';
+import {AddMessageAction, DeleteMessageAction} from '../interfaces/interface-actions';
 
-export const INCREMENT: string = 'INCREMENT';
-export const increment: ActionCreator<Action> = () => ({
-    type: INCREMENT
-});
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
-export const DECREMENT: string = 'DECREMENT';
-export const decrement: ActionCreator<Action> = () => ({
-    type: DECREMENT
-});
+class MessageActions {
+    static addMessage(message:string):AddMessageAction {
+        return{
+            type:ADD_MESSAGE,
+            message:message
+        };
+    }
+    static deleteMessage(index:number):DeleteMessageAction{
+        return{
+            type:DELETE_MESSAGE,
+            index:index
+        };
+    }
+}
+
+export default MessageActions;

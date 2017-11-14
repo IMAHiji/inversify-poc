@@ -1,39 +1,33 @@
-import {inject, injectable} from 'inversify';
-import {AppState} from '../interfaces/interface-appState';
-import {Reducer} from '../interfaces/interface-reducer';
-import TYPES from '../constant/types'
-import {ListenerCallback} from '../interfaces/interface-listenerCallback'
-import StoreInterface from '../interfaces/interface-store'
-import store from '../store/store'
-import {Action} from 'redux';
+import {injectable} from 'inversify';
 
-console.log("Store in class: ", store)
+import {Reducer} from '../interfaces/interface-reducer';
+
+import {ListenerCallback} from '../interfaces/interface-listenerCallback'
+import store from '../store/store'
+import {AppState} from '../interfaces/interface-appState';
+//import {Action} from 'redux';
+// import {UnsubscribeCallBack} from '../interfaces/interface-unsubscribeCallback';
+
+
 
 @injectable()
-class InversifyStore implements StoreInterface{
+class InversifyStore<T>{
+    public _state:AppState;
+    public _listeners:ListenerCallback[];
+    public reducer:Reducer<T>;
+    dispatch({}:object):any{};
+    getState():any{};
+    subscribe(listener:Function):any{};
+    replaceReducer(nextReducer: Function):any{};
 
-    public _state: AppState;
-    public _listeners: ListenerCallback[] =[];
-    public reducer:Reducer<any>
-
-    constructor(){}
-
-    public dispatch(action:Action){
-        return store.dispatch(action)
+    public constructor(initialState:AppState, reducer:Reducer<T>){
+        this.dispatch = store.dispatch;
+        this.getState = store.getState;
+        this.subscribe = store.subscribe;
+        this.replaceReducer = store.replaceReducer
+        this._state = initialState
+        this.reducer = reducer
     }
-
-    public getState(){
-        return store.getState()
-    }
-
-    public subscribe(listener:ListenerCallback){
-        return store.subscribe(listener)
-    }
-
-
-
-
-
 
 }
 

@@ -1,12 +1,13 @@
-// import container from '../src/inversify/ioc_config'
-// import TYPES from './constant/types';
-// import Store from './entities/Store';
+import container from '../src/inversify/ioc_config'
+import TYPES from './constant/types';
+import InversifyStore from './entities/Store';
 
 
 //Grab the store from the IoC container
-// let store = container.get<Store>(TYPES.Store)
+//let injectableStore = container.get<InversifyStore<any>>(TYPES.Store)
 import store from './store/store'
 
+// console.log('Injectable store: ', injectableStore)
 
 const target:HTMLElement = document.getElementById('messages')
 

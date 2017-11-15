@@ -1,4 +1,3 @@
-
 import { Reducer, Action } from 'redux';
 import {AppState} from '../interfaces/interface-appState';
 import { AddMessageAction, DeleteMessageAction} from '../interfaces/interface-actions';
@@ -24,7 +23,7 @@ const MessageReducer:Reducer<AppState> =
             default:
                 return state;
         }
-    }
+    };
 
 
 export default MessageReducer;

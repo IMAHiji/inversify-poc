@@ -9,9 +9,6 @@ import logger from 'redux-logger'
 import  messageReducer from './messageReducer';
 import {AppState} from '../interfaces/interface-appState';
 
-
-
-
 function createAppStore(): Store<AppState> {
     return createStore(
         messageReducer,
@@ -20,7 +17,6 @@ function createAppStore(): Store<AppState> {
 }
 
 const store = createAppStore()
-
 
 export default store
 

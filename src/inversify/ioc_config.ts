@@ -1,14 +1,10 @@
-import 'reflect-metadata'
-import {Container} from 'inversify'
-// import StoreInterface from '../interfaces/interface-store'
-import TYPES from '../constant/types'
-import InversifyStore from '../entities/Store'
-//import {AppState} from '../interfaces/interface-appState';
+import 'reflect-metadata';
+import {Container} from 'inversify';
+import TYPES from '../constant/types';
+import InversifyStore from '../entities/Store';
 
 let container = new Container();
 
-container.bind<InversifyStore>(TYPES.Store).to(InversifyStore)
-
-
+container.bind<InversifyStore>(TYPES.Store).to(InversifyStore);
 
 export default container;

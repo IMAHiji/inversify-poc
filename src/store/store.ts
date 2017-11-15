@@ -20,7 +20,7 @@ function createAppStore(): Store<AppState> {
 }
 
 const store = createAppStore()
-console.log('Store', store)
+
 
 export default store
 

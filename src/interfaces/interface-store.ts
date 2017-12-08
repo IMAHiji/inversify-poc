@@ -1,8 +1,12 @@
-interface InterfaceStore {
-    dispatch(action:object):any
-    getState():object
-    subscribe(listener)
-    replaceReducer(nextReducer:Function):any
+import {Action} from 'redux'
+import {ListenerCallback} from './interface-listenerCallback'
+import {ReplaceReducer} from './interface-replaceReducer';
+
+interface StoreInterface {
+    getState()
+    dispatch(action:Action)
+    subscribe(listener:ListenerCallback)
+    replaceReducer(nextReducer:ReplaceReducer)
 }
 
-export default InterfaceStore;
+export default StoreInterface;

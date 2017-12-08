@@ -5,13 +5,13 @@ import {
     applyMiddleware,
 } from 'redux';
 import logger from 'redux-logger'
-import { StateInterface } from './interface-state';
-import { counterReducer } from './reducers';
 
+import  messageReducer from './messageReducer';
+import {AppState} from '../interfaces/interface-appState';
 
-function createAppStore(): Store<StateInterface> {
-    return createStore<StateInterface>(
-        counterReducer,
+function createAppStore(): Store<AppState> {
+    return createStore(
+        messageReducer,
         applyMiddleware(logger)
     );
 }

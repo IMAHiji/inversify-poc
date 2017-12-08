@@ -9,3 +9,7 @@ export interface DeleteMessageAction extends Action {
     type:string,
     index:number;
 }
+
+export interface ChangeCount extends Action {
+    amount:number
+}

@@ -2,22 +2,18 @@
 import {
     createStore,
     Store,
-    applyMiddleware,
+    applyMiddleware
 } from 'redux';
-import logger from 'redux-logger'
 
 import  messageReducer from './messageReducer';
-import {AppState} from '../interfaces/interface-appState';
+import { MessagingState } from '../interfaces/interface-appState';
+import thunk from 'redux-thunk';
 
-function createAppStore(): Store<AppState> {
-    return createStore(
-        messageReducer,
-        applyMiddleware(logger)
-    );
-}
 
-const store = createAppStore()
 
+
+
+const store: Store<MessagingState> = applyMiddleware(thunk)(createStore)(messageReducer);
 export default store
 
 

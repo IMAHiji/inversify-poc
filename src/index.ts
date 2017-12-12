@@ -12,7 +12,6 @@ let injectableStore = container.get<InversifyStore>(TYPES.Store);
 const countExists = () => !!injectableStore.getState().count
 
 const createReducers = (injectedReducers) => {
-    console.log('Injected reducer', injectedReducers)
     return combineReducers({
         messaging:messageReducer,
         ...injectedReducers

@@ -4,9 +4,6 @@ import {AppState, UIMessageType, } from '../interfaces/interface-appState';
 import { AddUIMessagePayload, DismissUIMessagePayload} from '../interfaces/interface-actions'
 import ActionTypeKeys from '../store-typings/actionTypeKeys'
 
-
-
-
 type Thunk = ThunkAction<void, AppState, void>
 
 export const addUIMessage = createAction<AddUIMessagePayload, string, UIMessageType>(

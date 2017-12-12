@@ -1,6 +1,6 @@
 
 import {AppState, MessagingState} from '../interfaces/interface-appState';
-import { addUIMessage, deleteUIMessage, addTempUIMessage } from './actions';
+import { addUIMessage, deleteUIMessage, addTempUIMessage } from './messageActions';
 import { UIMessagePayload} from '../interfaces/interface-actions'
 import {handleActions, Action} from 'redux-actions';
 

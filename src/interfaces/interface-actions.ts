@@ -11,7 +11,7 @@ export interface DeleteMessageAction extends Action {
     index:number;
 }
 
-export interface ChangeCount extends Action {
+export type ChangeCount = {
     amount:number
 }
 

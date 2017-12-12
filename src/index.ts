@@ -5,8 +5,11 @@ import { addUIMessage, deleteUIMessage } from './store/messageActions'
 import countReducer from './store/countReducer'
 import {combineReducers} from 'redux';
 import messageReducer from './store/messageReducer'
+import {changeCount} from './store/countActions';
 
+let injectableStore = container.get<InversifyStore>(TYPES.Store);
 
+const countExists = () => !!injectableStore.getState().count
 
 const createReducers = (injectedReducers) => {
     console.log('Injected reducer', injectedReducers)
@@ -16,48 +19,59 @@ const createReducers = (injectedReducers) => {
     })
 };
 
-
-let injectableStore = container.get<InversifyStore>(TYPES.Store);
+const elements = {
+    renderTarget:document.getElementById('messages'),
+    counterIndicator:document.getElementById('countIndicator'),
+    addMessage:document.getElementById('addMessage'),
+    removeMessage:document.getElementById('removeMessage'),
+    injectCountReducer:document.getElementById('injectCountReducer'),
+    incrementCount:document.getElementById('incrementCount'),
+    decrementCount:document.getElementById('decrementCount')
+}
+const { renderTarget, counterIndicator, addMessage, removeMessage, injectCountReducer, incrementCount, decrementCount } = elements;
 
 console.log('Injectable store state: ', injectableStore.getState());
 
-
-const target:HTMLElement = document.getElementById('messages');
-
+const target:HTMLElement = renderTarget
+const counterTarget:HTMLElement = counterIndicator
 
 function render(): any {
     let messageArray = []
     injectableStore.getState().messaging.messages.forEach((arrayItem)=>{
         messageArray.push(`${arrayItem.text} index: ${arrayItem.id},  <br/>` );
     })
-
     target.innerHTML = messageArray.toString().replace(/\,/g, "");
-
+    if(countExists()){
+        counterTarget.innerHTML = injectableStore.getState().count.currentCount.toString()
+    } else {
+       console.log('Count reducer does not yet exist on the window.')
+    }
 }
-
 render();
-injectableStore.subscribe(render);
 
+injectableStore.subscribe(render);
 
 let localReducers = {count:countReducer};
 
-
-document.getElementById('addMessage')
-    .addEventListener('click', function(){
-        injectableStore.dispatch(
-                addUIMessage('Additional Message', 'info')
-            )
+addMessage.addEventListener('click', function(){
+    injectableStore.dispatch(
+        addUIMessage('Additional Message', 'info')
+    )
 });
-document.getElementById('removeMessage')
-    .addEventListener('click', function(){
-        injectableStore.dispatch(
-            deleteUIMessage(injectableStore.getState().messaging.lastMessage)
-        )
+removeMessage.addEventListener('click', function(){
+    injectableStore.dispatch(
+        deleteUIMessage(injectableStore.getState().messaging.lastMessage)
+    )
 });
-
-document.getElementById('injectCountReducer')
-    .addEventListener('click', function () {
-        console.log('I\'ve been clicked');
-        injectableStore.replaceReducer(createReducers(localReducers))
-        console.log('Store after injection:  ', injectableStore.getState())
+injectCountReducer.addEventListener('click', function () {
+    injectableStore.replaceReducer(createReducers(localReducers))
+    console.log('Store after injection:  ', injectableStore.getState())
+});
+incrementCount.addEventListener('click', function () {
+    console.log('Increment');
+    countExists()?injectableStore.dispatch(changeCount(1)):alert('Please inject local counter reducer')
+});
+decrementCount.addEventListener('click', function () {
+    console.log('Decrement');
+    countExists()?injectableStore.dispatch(changeCount(-1)):alert('Please inject local counter reducer')
 });

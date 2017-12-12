@@ -1,20 +1,8 @@
-import { Action } from 'redux'
 import {UIMessageType} from './interface-appState';
 
-export interface AddMessageAction extends Action{
-    type:string,
-    message:string;
-}
-
-export interface DeleteMessageAction extends Action {
-    type:string,
-    index:number;
-}
-
-export type ChangeCount = {
+export type ChangeCountPayload = {
     amount:number
 }
-
 
 export type AddUIMessagePayload = {
     text: string;

@@ -1,13 +1,24 @@
 import container from '../src/inversify/ioc_config';
 import TYPES from './constant/types';
 import InversifyStore from './entities/Store';
-import {addUIMessage, deleteUIMessage} from './store/messageActions'
+import { addUIMessage, deleteUIMessage } from './store/messageActions'
+import countReducer from './store/countReducer'
+import {combineReducers} from 'redux';
+import messageReducer from './store/messageReducer'
 
+
+
+const createReducers = (injectedReducers) => {
+    return combineReducers({
+        messaging:messageReducer,
+        count:messageReducer
+    })
+}
 
 
 let injectableStore = container.get<InversifyStore>(TYPES.Store);
 
-console.log('Injectable store state: ', injectableStore.getState().messaging);
+console.log('Injectable store state: ', injectableStore.getState());
 
 
 const target:HTMLElement = document.getElementById('messages');
@@ -38,3 +49,10 @@ document.getElementById('removeMessage')
             deleteUIMessage(injectableStore.getState().messaging.lastMessage)
         )
 });
+
+document.getElementById('injectCountReducer')
+    .addEventListener('click', function () {
+        console.log('I\'ve been clicked');
+        injectableStore.replaceReducer(createReducers(countReducer))
+        console.log('Store after injection:  ', injectableStore.getState())
+    })

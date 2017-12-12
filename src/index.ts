@@ -16,9 +16,9 @@ const target:HTMLElement = document.getElementById('messages');
 function render(): any {
     let messageArray = []
     injectableStore.getState().messaging.messages.forEach((arrayItem)=>{
-        messageArray.push(arrayItem.text);
+        messageArray.push(`<p>${arrayItem.text} index: ${arrayItem.id}</p>`);
     })
-    console.log('Message Array: ', messageArray)
+
     target.innerHTML = messageArray.toString();
 }
 
@@ -28,7 +28,7 @@ injectableStore.subscribe(render);
 document.getElementById('addMessage')
     .addEventListener('click', function(){
         injectableStore.dispatch(
-                addUIMessage('HI', 'info')
+                addUIMessage('Additional Message', 'info')
             )
     });
 document.getElementById('removeMessage')

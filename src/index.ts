@@ -9,11 +9,12 @@ import messageReducer from './store/messageReducer'
 
 
 const createReducers = (injectedReducers) => {
+    console.log('Injected reducer', injectedReducers)
     return combineReducers({
         messaging:messageReducer,
-        count:messageReducer
+        ...injectedReducers
     })
-}
+};
 
 
 let injectableStore = container.get<InversifyStore>(TYPES.Store);
@@ -37,6 +38,10 @@ function render(): any {
 render();
 injectableStore.subscribe(render);
 
+
+let localReducers = {count:countReducer};
+
+
 document.getElementById('addMessage')
     .addEventListener('click', function(){
         injectableStore.dispatch(
@@ -53,6 +58,6 @@ document.getElementById('removeMessage')
 document.getElementById('injectCountReducer')
     .addEventListener('click', function () {
         console.log('I\'ve been clicked');
-        injectableStore.replaceReducer(createReducers(countReducer))
+        injectableStore.replaceReducer(createReducers(localReducers))
         console.log('Store after injection:  ', injectableStore.getState())
-    })
+});

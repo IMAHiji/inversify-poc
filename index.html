@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>INVERSIFY POC</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    
+
 </head>
 <body>
 <div class="container">
     <h1>Inversify POC</h1>
     <div class="jumbotron">
-        <h2>Store Injected From Inversify</h2>
+        <h3>Store Injected From Inversify Container</h3>
         <div id="messages"></div>
 
     </div>
@@ -21,10 +21,10 @@
     <button class="btn btn-primary" id="injectCountReducer">INJECT COUNT REDUCER</button>
 
     <div class="jumbotron">
-        <h2>Store injected from Local Reducer</h2>
+        <h3>Store injected from Local Reducer</h3>
         <div id="count">
             <p>Count:</p>
-            <p id="countIndicator"></p>
+            <p id="countIndicator" class="badge badge-pill badge-danger"></p>
         </div>
         <button id="incrementCount">INCREMENT Count</button>
         <button id="decrementCount">DECREMENT Count</button>

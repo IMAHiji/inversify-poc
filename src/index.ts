@@ -7,14 +7,14 @@ import {addUIMessage, deleteUIMessage} from './store/actions'
 
 let injectableStore = container.get<InversifyStore>(TYPES.Store);
 
-console.log('Injectable store state: ', injectableStore.getState().messages);
+console.log('Injectable store state: ', injectableStore.getState().messaging);
 
 
 const target:HTMLElement = document.getElementById('messages');
 
 
 function render(): any {
-    target.innerHTML = injectableStore.getState().messages[0].text.toString();
+    target.innerHTML = injectableStore.getState().messaging.messages.toString();
 }
 
 render();
@@ -29,6 +29,6 @@ document.getElementById('addMessage')
 document.getElementById('removeMessage')
     .addEventListener('click', function(){
         injectableStore.dispatch(
-            deleteUIMessage(0)
+            deleteUIMessage(injectableStore.getState().messaging.lastMessage)
         )
     });

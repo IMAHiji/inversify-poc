@@ -3,7 +3,10 @@ import store from '../store/store'
 import StoreInterface from '../interfaces/interface-store'
 
 import {ListenerCallback} from '../interfaces/interface-listenerCallback';
-import {ReplaceReducer} from '../interfaces/interface-replaceReducer';
+
+
+
+
 
 @injectable()
 class InversifyStore implements StoreInterface {
@@ -18,7 +21,7 @@ class InversifyStore implements StoreInterface {
     subscribe(listener:ListenerCallback){
         return store.subscribe(listener)
     }
-    replaceReducer(nextReducer:ReplaceReducer){
+    replaceReducer(nextReducer){
         return store.replaceReducer(nextReducer)
     }
 

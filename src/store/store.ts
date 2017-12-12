@@ -7,7 +7,8 @@ import {
 } from 'redux';
 import { createLogger } from 'redux-logger';
 
-import  messageReducer from './messageReducer';
+import messageReducer from './messageReducer';
+
 import {AppState} from '../interfaces/interface-appState';
 
 

@@ -1,8 +1,8 @@
 
-import {AppState, MessagingState} from '../interfaces/interface-appState';
-import { addUIMessage, deleteUIMessage, addTempUIMessage } from './actions';
-import { UIMessagePayload} from '../interfaces/interface-actions'
-import {handleActions, Action} from 'redux-actions';
+import {AppState, MessagingState } from '../interfaces/interface-appState';
+import { addUIMessage, deleteUIMessage, addTempUIMessage } from './messageActions';
+import { UIMessagePayload } from '../interfaces/interface-actions'
+import { handleActions, Action } from 'redux-actions';
 
 const initialState:AppState = {
     messaging: {
@@ -14,6 +14,7 @@ const initialState:AppState = {
 const messagingReducer = handleActions<MessagingState, UIMessagePayload>(
     {
         [addUIMessage.toString()]: (state, action: Action<UIMessagePayload>): MessagingState =>({
+            ...state,
             lastMessage: state.lastMessage+1,
             messages:[{ ...action.payload, id:state.lastMessage +1}].concat(state.messages)
         }),

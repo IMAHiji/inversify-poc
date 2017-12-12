@@ -25,6 +25,7 @@ serve the client app, so long as the stores can be injected and merged.
 
 1. [Inversify](http://inversify.io/)
 2. [Redux](https://redux.js.org/)
+3. [Redux-Actions](https://redux-actions.js.org/)
 
 
 
@@ -42,10 +43,5 @@ latter (Types) are used to generate unique Symbols for each container ("Symbol('
 controllable container.
 * `/src/store`:  All the redux stuff.
 
-### What currently sucks (rather, what is left):
+### What's Left:
 1. Implement usage of redux observables
-2. Need to decide from where actions will be dispatched, how to ensure parity of state between
-applications that are requesting the common store
-3. Will the common store be mutable by client applications?
-4. Will the entire store be injected into each client application, with slices of the store being skimmed with
-reducers in the client apps?

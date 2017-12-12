@@ -1,29 +1,33 @@
-import { Reducer, Action } from 'redux';
-import {AppState} from '../interfaces/interface-appState';
-import { AddMessageAction, DeleteMessageAction} from '../interfaces/interface-actions';
-import { ADD_MESSAGE, DELETE_MESSAGE } from './actions';
 
-const initialState:AppState = { messages: [] };
+import {AppState, MessagingState} from '../interfaces/interface-appState';
+import { addUIMessage, deleteUIMessage, addTempUIMessage } from './actions';
+import { UIMessagePayload} from '../interfaces/interface-actions'
+import {handleActions, Action} from 'redux-actions';
 
-const MessageReducer:Reducer<AppState> =
-    (state:AppState = initialState, action:Action)=>{
-        switch(action.type){
-            case ADD_MESSAGE:
-                return {
-                    messages:state.messages.concat((<AddMessageAction>action).message),
-                };
-            case DELETE_MESSAGE:
-                let idx = (<DeleteMessageAction>action).index;
-                return {
-                    messages: [
-                        ...state.messages.slice(0, idx),
-                        ...state.messages.slice(idx + 1, state.messages.length)
-                    ]
-                };
-            default:
-                return state;
-        }
-    };
+const initialState:AppState = {
+    messaging: {
+        messages: [{type:'info', text:'Welcome this is the seed message!', id:1}],
+        lastMessage:1
+    }
+};
 
+const messagingReducer = handleActions<MessagingState, UIMessagePayload>(
+    {
+        [addUIMessage.toString()]: (state, action: Action<UIMessagePayload>): MessagingState =>({
+            lastMessage: state.lastMessage+1,
+            messages:[{ ...action.payload, id:state.lastMessage +1}].concat(state.messages)
+        }),
+        [deleteUIMessage.toString()]: <DismissUIMessagePayload>(state, action: Action<DismissUIMessagePayload>): MessagingState => ({
+            ...state,
+            lastMessage: state.lastMessage-1,
+            messages: state.messages.filter(m => m.id !== action.payload)
+        }),
+        [addTempUIMessage.toString()]: (state, action: Action<UIMessagePayload>): MessagingState => ({
+            ...state,
+            messages: state.messages.filter(m => m.id !== action.payload.id)
+        })
+    },
+    initialState.messaging
+);
 
-export default MessageReducer;
+export default messagingReducer;

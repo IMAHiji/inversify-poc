@@ -3,23 +3,26 @@ import {
     createStore,
     Store,
     applyMiddleware,
+    combineReducers
 } from 'redux';
-import logger from 'redux-logger'
+import { createLogger } from 'redux-logger';
 
 import  messageReducer from './messageReducer';
 import {AppState} from '../interfaces/interface-appState';
 
+
+const logger = createLogger()
+const rootReducer = combineReducers<AppState>({
+    messaging:messageReducer
+})
+
 function createAppStore(): Store<AppState> {
     return createStore(
-        messageReducer,
+        rootReducer,
         applyMiddleware(logger)
     );
 }
 
-const store = createAppStore()
+const store: Store<AppState> = createAppStore()
 
 export default store
-
-
-
-

@@ -1,18 +1,18 @@
 import {injectable} from 'inversify';
 import store from '../store/store'
 import StoreInterface from '../interfaces/interface-store'
-import {AddMessageAction, DeleteMessageAction} from '../interfaces/interface-actions';
+
 import {ListenerCallback} from '../interfaces/interface-listenerCallback';
 import {ReplaceReducer} from '../interfaces/interface-replaceReducer';
 
 @injectable()
 class InversifyStore implements StoreInterface {
 
-
     getState(){
        return store.getState()
     }
-    dispatch(action:AddMessageAction | DeleteMessageAction){
+    //Currently untyped for now.
+    dispatch(action){
         return store.dispatch(action)
     }
     subscribe(listener:ListenerCallback){

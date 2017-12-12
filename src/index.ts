@@ -14,7 +14,12 @@ const target:HTMLElement = document.getElementById('messages');
 
 
 function render(): any {
-    target.innerHTML = injectableStore.getState().messaging.messages.toString();
+    let messageArray = []
+    injectableStore.getState().messaging.messages.forEach((arrayItem)=>{
+        messageArray.push(arrayItem.text);
+    })
+    console.log('Message Array: ', messageArray)
+    target.innerHTML = messageArray.toString();
 }
 
 render();

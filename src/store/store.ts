@@ -9,7 +9,7 @@ import { createLogger } from 'redux-logger';
 
 import messageReducer from './messageReducer';
 
-import {AppState} from '../interfaces/interface-appState';
+import {AppState} from '../store-typings/type-appState';
 
 
 const logger = createLogger()

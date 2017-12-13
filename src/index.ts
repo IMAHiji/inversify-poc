@@ -1,7 +1,7 @@
 import container from '../src/inversify/ioc_config';
 import TYPES from './constant/types';
 import InversifyStore from './entities/Store';
-import { addUIMessage, deleteUIMessage } from './store/messageActions'
+import { addMessage, deleteMessage } from './store/messageActions'
 import countReducer from './store/countReducer'
 import {combineReducers} from 'redux';
 import messageReducer from './store/messageReducer'
@@ -21,13 +21,13 @@ const createReducers = (injectedReducers) => {
 const elements = {
     renderTarget:document.getElementById('messages'),
     counterIndicator:document.getElementById('countIndicator'),
-    addMessage:document.getElementById('addMessage'),
+    addMessageButton:document.getElementById('addMessage'),
     removeMessage:document.getElementById('removeMessage'),
     injectCountReducer:document.getElementById('injectCountReducer'),
     incrementCount:document.getElementById('incrementCount'),
     decrementCount:document.getElementById('decrementCount')
 }
-const { renderTarget, counterIndicator, addMessage, removeMessage, injectCountReducer, incrementCount, decrementCount } = elements;
+const { renderTarget, counterIndicator, addMessageButton, removeMessage, injectCountReducer, incrementCount, decrementCount } = elements;
 
 console.log('Injectable store state: ', injectableStore.getState());
 
@@ -52,14 +52,14 @@ injectableStore.subscribe(render);
 
 let localReducers = {count:countReducer};
 
-addMessage.addEventListener('click', function(){
+addMessageButton.addEventListener('click', function(){
     injectableStore.dispatch(
-        addUIMessage('Additional Message', 'info')
+        addMessage('Additional Message', 'info')
     )
 });
 removeMessage.addEventListener('click', function(){
     injectableStore.dispatch(
-        deleteUIMessage(injectableStore.getState().messaging.lastMessage)
+        deleteMessage(injectableStore.getState().messaging.lastMessage)
     )
 });
 injectCountReducer.addEventListener('click', function () {

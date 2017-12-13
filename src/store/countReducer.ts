@@ -1,4 +1,4 @@
-import { AppState, CountState } from '../interfaces/interface-appState';
+import { AppState, CountState } from '../store-typings/type-appState';
 import {Action, handleActions} from 'redux-actions';
 import {ChangeCountPayload} from '../interfaces/interface-actions';
 import {changeCount} from './countActions';

@@ -9,17 +9,17 @@ export type AppState = {
 //Messaging State Shape
 export type MessagingState = {
     lastMessage:number,
-    messages:UIMessage[]
+    messages:Message[]
 }
 
 //Individual Message type
-export type UIMessage = {
+export type Message = {
     id:number,
     text:string,
-    type:UIMessageType
+    type:MessageType
 }
 //Message Types
-export type UIMessageType = 'info' | 'success' | 'error'
+export type MessageType = 'info' | 'success' | 'error'
 
 
 export type CountState = {

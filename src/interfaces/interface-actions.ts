@@ -1,18 +1,18 @@
-import {UIMessageType} from './interface-appState';
+import {MessageType} from '../store-typings/type-appState';
 
 export type ChangeCountPayload = {
     amount:number
 }
 
-export type AddUIMessagePayload = {
+export type AddMessagePayload = {
     text: string;
-    type: UIMessageType
+    type: MessageType
 }
 
-export type DismissUIMessagePayload = number
+export type DismissMessagePayload = number
 
-export type UIMessagePayload = {
+export type MessagePayload = {
     text:string
-    type:UIMessageType,
+    type:MessageType,
     id?:number;
 }

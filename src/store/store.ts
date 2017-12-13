@@ -6,10 +6,8 @@ import {
     combineReducers
 } from 'redux';
 import { createLogger } from 'redux-logger';
-
 import messageReducer from './messageReducer';
-
-import {AppState} from '../store-typings/type-appState';
+import { AppState } from '../store-typings/type-appState';
 
 
 const logger = createLogger()

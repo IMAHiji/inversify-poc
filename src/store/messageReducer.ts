@@ -1,7 +1,7 @@
 
 import {AppState, MessagingState } from '../store-typings/type-appState';
 import { addMessage, deleteMessage, addTempMessage } from './messageActions';
-import { MessagePayload } from '../interfaces/interface-actions'
+import { MessagePayload } from '../store-typings/type-actions';
 import { handleActions, Action } from 'redux-actions';
 
 const initialState:AppState = {

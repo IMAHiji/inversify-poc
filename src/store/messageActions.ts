@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { ThunkAction } from 'redux-thunk';
 import {AppState, MessageType, } from '../store-typings/type-appState';
-import { AddMessagePayload, DismissMessagePayload} from '../interfaces/interface-actions'
+import { AddMessagePayload, DismissMessagePayload} from '../store-typings/type-actions';
 import ActionTypeKeys from '../store-typings/actionTypeKeys'
 
 type Thunk = ThunkAction<void, AppState, void>
